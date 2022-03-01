@@ -17,7 +17,10 @@
     </div>
     <div id="showWeather" style="border: 1px solid gray; padding: 1rem;">
         <p>
+            <span id="location"></span>
             <span id="currentTemperature"></span> &#8457;
+            <span id="description"></span>
+            <span id="currentConditions"></span>
         </p>
 
     </div>
@@ -54,8 +57,23 @@
                  
         function displayWeather(weather) {
             console.log('displayWeather');
+
+            var locationElem  = document.getElementById('location');
+            locationElem.innerText = weather.name;
+            console.log(weather.name);
+
             var temperatureElem = document.getElementById('currentTemperature');
             temperatureElem.innerText = weather.main.temp;
+
+            var descriptionElem = document.getElementById('description');
+            descriptionElem.innerText = weather.weather[0].description;
+            console.log(weather.weather[0].description);
+
+            var conditionsElem = document.getElementById('currentConditions');
+            var iconCode = weather.weather[0].icon;
+            conditionsElem.innerHTML = `<img src="https://openweathermap.org/img/wn/${iconCode}.png" /> `;
+            console.log(weather.weather[0].icon);
+
         }
 
         console.log('Start');
