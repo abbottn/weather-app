@@ -1,0 +1,64 @@
+<html>
+    <title>
+        Weather App
+        <link href="site.css" rel="stylesheet">
+    </title>
+</html>
+<body>
+    <h1>Weather App</h1>
+    <div id="askForWeather">
+        <form>
+            <label>
+                Zip Code:
+                <input id="zipCode" name="ZipCode" />
+            </label>
+            <button onclick="weatherRequest() ;event.preventDefault();">Weather</button>
+        </form>
+    </div>
+    <div id="showWeather" style="border: 1px solid gray; padding: 1rem;">
+        <p>
+            <span id="currentTemperature"></span> &#8457;
+        </p>
+
+    </div>
+    <script>
+        var APIKEY = 'a7736d69af7342eb9f4130638a60151b';
+
+        function apiRequest(zipCode) {
+            var apiString = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},US&units=imperial&appid=${APIKEY}`;
+            console.log('apiRequest ' + zipCode);
+            if (zipCode == '') {
+                return;
+            }
+            fetch(apiString)
+                 .then(function (resp) {return resp.json() })
+                 .then(function (weather) {
+                     console.log(weather);
+                     displayWeather(weather);
+                 })
+                 .catch(function() {
+                     
+                 });
+
+        }
+
+        function weatherRequest() {
+            console.log('weatherRequest');
+            var zipElem = document.getElementById('zipCode');
+            console.log('request zip code', zipElem);
+            var zipCode = zipElem.value;
+            console.log('zipCode = ' , zipCode);
+            console.log(zipCode);
+            apiRequest(zipCode);
+        }
+                 
+        function displayWeather(weather) {
+            console.log('displayWeather');
+            var temperatureElem = document.getElementById('currentTemperature');
+            temperatureElem.innerText = weather.main.temp;
+        }
+
+        console.log('Start');
+        weatherRequest();
+    </script>
+</body>
