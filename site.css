@@ -1,9 +1,26 @@
-p {
-    color: cadetblue;
+h1 {
+    padding-left: 1rem;
 }
-.main p {
-    color: blue;
+label {
+    color: orangered;
 }
-#p1 {
+#askForWeather {
+    padding-left: 1rem;
+}
+#showWeather {
+    max-width: 36rem;
+    padding-left: 1rem;
+    max-width: 36rem; 
+    padding-left: 1rem;
+}
+#location {
+    color: brown;
+}
+#currentTemperature {
     color: black;
+    font-size: 1.2em;
 }
+#description {
+    color: purple;
+}
+
